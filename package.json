@@ -1,6 +1,6 @@
 {
     "name": "swagen-dotnet-webapi",
-    "version": "0.0.1-beta.2",
+    "version": "0.0.1-beta.8",
     "description": "Swagen generator for creating empty ASP.NET Web API services",
     "main": "index.js",
     "directories": {
@@ -28,6 +28,6 @@
     "homepage": "https://github.com/swagen/swagen-dotnet-webapi#readme",
     "dependencies": {
         "lodash": "^4.17.4",
-        "swagen-core": "0.0.22"
+        "swagen-core": "0.0.27"
     }
 }
