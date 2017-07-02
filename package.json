@@ -1,0 +1,33 @@
+{
+    "name": "swagen-dotnet-webapi",
+    "version": "0.0.1-beta.2",
+    "description": "Swagen generator for creating empty ASP.NET Web API services",
+    "main": "index.js",
+    "directories": {
+        "lib": "lib"
+    },
+    "scripts": {
+        "bump": "npm version prerelease --no-git-tag-version",
+        "bumppub": "npm publish && npm run bump",
+        "update": "npm un --save swagen-core && npm i --save swagen-core"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/swagen/swagen-dotnet-webapi.git"
+    },
+    "keywords": [
+        "swagen",
+        "dotnet",
+        "webapi"
+    ],
+    "author": "Swagen <swagen@jeevanjames.com>",
+    "license": "Apache-2.0",
+    "bugs": {
+        "url": "https://github.com/swagen/swagen-dotnet-webapi/issues"
+    },
+    "homepage": "https://github.com/swagen/swagen-dotnet-webapi#readme",
+    "dependencies": {
+        "lodash": "^4.17.4",
+        "swagen-core": "0.0.22"
+    }
+}
