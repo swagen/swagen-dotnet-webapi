@@ -1,11 +1,15 @@
-'use strict';
+import { OperationDefinition } from 'swagen';
+import { getDataType } from './get-data-type';
 
-const getDataType = require('./get-data-type');
+export interface ReturnTypeOptions {
+    useTask?: boolean;
+    namespace?: string;
+}
 
-function getReturnType(operation, options) {
+export function getReturnType(operation: OperationDefinition, options: ReturnTypeOptions) {
     options = options || {};
     let useTask = options.useTask;
-    let modelsNs = options.modelsNs;
+    let modelsNs = options.namespace;
 
     if (!operation.responses) {
         return useTask ? 'Task' : undefined;
@@ -21,5 +25,3 @@ function getReturnType(operation, options) {
 
     return useTask ? 'Task' : undefined;
 }
-
-module.exports = getReturnType;

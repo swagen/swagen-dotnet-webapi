@@ -27,7 +27,13 @@
     },
     "homepage": "https://github.com/swagen/swagen-dotnet-webapi#readme",
     "dependencies": {
-        "lodash": "^4.17.4",
-        "swagen-core": "0.0.27"
+        "codewriter": "^1.3.0-beta.4",
+        "lodash": "^4.17.4"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.32",
+        "swagen": "^1.0.0-beta.29",
+        "tslint": "^5.7.0",
+        "typescript": "^2.5.3"
     }
 }

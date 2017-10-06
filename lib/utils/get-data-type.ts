@@ -1,6 +1,6 @@
-'use strict';
+import { DataType } from 'swagen';
 
-function getPrimitiveTypeName(property) {
+function getPrimitiveTypeName(property: DataType): string {
     switch (property.primitive) {
         case 'integer':
             return 'long';
@@ -28,11 +28,11 @@ function getPrimitiveTypeName(property) {
     }
 }
 
-function prefixNamespace(name, ns) {
+function prefixNamespace(name: string, ns?: string): string {
     return ns ? `${ns}.${name}` : name;
 }
 
-module.exports = function(property, ns) {
+export function getDataType(property: DataType, ns?: string): string {
     let typeName;
     if (property.primitive) {
         typeName = getPrimitiveTypeName(property);
