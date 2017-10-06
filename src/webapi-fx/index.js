@@ -81,20 +81,20 @@ module.exports = class Generator {
                 .line(`public ${cs.getMethodSignature(operationName, operation)}`)
                 .line(`{`)
                 .indent()
-                    .line(`var __response = new HttpResponseMessage(HttpStatusCode.OK);`)
-                    .inline(`__Process${operationName}(__response`)
+                    .line(`var response = new HttpResponseMessage(HttpStatusCode.OK);`)
+                    .inline(`__Process${operationName}(response`)
                         .repeat(operation.parameters, (cb, p) => {
                             cb.inline(`, ${p.name}`)
                         })
                         .inline(`);`)
                         .done()
-                    .line(`return ResponseMessage(__response);`)
+                    .line(`return ResponseMessage(response);`)
                 .unindent(`}`);
 
             this.code.blank();
 
             this.code
-                .inline(`partial void __Process${operationName}(HttpResponseMessage __response`)
+                .inline(`partial void __Process${operationName}(HttpResponseMessage response`)
                 .repeat(operation.parameters, (cb, p) => {
                     let dataType = cs.getDataType(p.dataType);
                     cb.inline(`, ${dataType} ${p.name}`)

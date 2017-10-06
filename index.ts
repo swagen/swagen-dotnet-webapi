@@ -1,3 +1,3 @@
-import * as webApiFxMode from './src/webapi';
+import webApiFxMode = require('./src/webapi');
 
-export default webApiFxMode;
+export = webApiFxMode;
