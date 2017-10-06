@@ -1,15 +1,18 @@
 {
     "name": "swagen-dotnet-webapi",
-    "version": "0.0.1-beta.8",
+    "version": "1.0.0-beta.2",
     "description": "Swagen generator for creating empty ASP.NET Web API services",
-    "main": "index.js",
-    "directories": {
-        "lib": "lib"
-    },
+    "main": "./lib/index.js",
+    "typings": "./typings/index.d.ts",
     "scripts": {
+        "watch": "tsc --watch",
+        "build": "tsc",
+        "lint": "tslint --project tsconfig.json --format verbose",
+        "update": "npm un --save swagen codewriter && npm i --save swagen codewriter",
         "bump": "npm version prerelease --no-git-tag-version",
-        "bumppub": "npm publish && npm run bump",
-        "update": "npm un --save swagen-core && npm i --save swagen-core"
+        "prepublishOnly": "npm run build && npm run lint",
+        "postpublish": "npm run bump",
+        "test-harness": "tsc --project ./test-harness/tsconfig.json && node ./test-harness/index"
     },
     "repository": {
         "type": "git",
@@ -31,6 +34,7 @@
         "lodash": "^4.17.4"
     },
     "devDependencies": {
+        "@types/lodash": "^4.14.77",
         "@types/node": "^8.0.32",
         "swagen": "^1.0.0-beta.29",
         "tslint": "^5.7.0",

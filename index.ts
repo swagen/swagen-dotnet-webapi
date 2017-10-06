@@ -1,3 +1,3 @@
-import * as webApiFxMode from './lib/webapi';
+import * as webApiFxMode from './src/webapi';
 
 export default webApiFxMode;

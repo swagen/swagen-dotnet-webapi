@@ -1,4 +1,4 @@
-import { getDataType } from './get-data-type'
+import { getDataType } from './get-data-type';
 import { getReturnType } from './get-return-type';
 import { OperationDefinition } from 'swagen';
 
@@ -6,7 +6,11 @@ export interface MethodSignatureOptions {
     namespace?: string;
 }
 
-export function getMethodSignature(operationName: string, operation: OperationDefinition, options: MethodSignatureOptions) {
+export function getMethodSignature(
+    operationName: string,
+    operation: OperationDefinition,
+    options: MethodSignatureOptions,
+) {
     options = options || {};
     const namespace = options.namespace;
 

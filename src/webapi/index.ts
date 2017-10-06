@@ -15,5 +15,5 @@ export default {
     prompts,
     buildProfile,
     validateProfile,
-    generate
+    generate,
 };
