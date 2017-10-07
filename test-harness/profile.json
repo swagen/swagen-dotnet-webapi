@@ -1,0 +1,16 @@
+{
+    "output": "./output.ts",
+    "generator": "angular",
+    "mode": "ng-typescript",
+    "transforms": {
+        "serviceName": ["suffix:Client", "pascal-case"],
+        "operationName": "pascal-case",
+        "parameterName": "camel-case",
+        "modelName": "pascal-case",
+        "propertyName": "pascal-case"
+    },
+    "url": "http://petstore.swagger.io/v2/swagger.json",
+    "options": {
+        "namespace": "TestHarness"
+    }
+}

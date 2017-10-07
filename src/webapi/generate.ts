@@ -1,6 +1,6 @@
 import { CodeWriter, OptionsLibrary } from 'codewriter';
 import * as _ from 'lodash';
-import { Definition, GeneratorProfile, OperationDefinition, ServiceDefinition } from 'swagen';
+import { DataType, Definition, GeneratorProfile, OperationDefinition, ServiceDefinition } from 'swagen';
 
 import { WebApiFxOptions } from '../../typings/index';
 import { cs } from '../utils';
@@ -20,6 +20,8 @@ class Generator {
             .blank()
             .startBlock(`namespace ${this.options.namespace}`)
                 .func(code => this.generateServices(code))
+                .blank()
+                .func(code => this.generateModels(code))
             .endBlock();
         return this.code.toCode();
     }
@@ -77,6 +79,37 @@ class Generator {
                     })
                     .inline(`);`)
                 .done();
+        });
+    }
+
+    private generateModels(code: CodeWriter): void {
+        const modelNames = _.keys(this.definition.models)
+            .sort((x, y) => x.toLowerCase().localeCompare(y.toLowerCase()));
+        const enumNames = _.keys(this.definition.enums).sort((x, y) => x.toLowerCase().localeCompare(y.toLowerCase()));
+
+        code.repeat(modelNames, (cw, modelName, i) => {
+            const model = this.definition.models[modelName];
+            cw.blank(i > 0)
+                .startBlock(`public sealed class ${modelName}`)
+                    .iterate(model, (cw2, property: DataType, propertyName, i2) => {
+                        cw2.blank(i2 > 0)
+                            .inline(`[JsonProperty("${property.originalName || propertyName}"`)
+                                .inline(`, Required = Required.AllowNull`, !!property.required)
+                                .inline(`)]`)
+                            .done()
+                            .line(`public ${cs.getDataType(property)} ${propertyName} { get; set; }`);
+                    })
+                .endBlock();
+        })
+        .blank(modelNames.length > 0)
+        .repeat(enumNames, (cw, enumName, i) => {
+            const enumType = this.definition.enums[enumName];
+            cw.blank(i > 0)
+                .startBlock(`public enum ${enumName}`)
+                    .repeat(enumType, (cw2, enumItem) => {
+                        cw2.line(`${enumItem},`);
+                    })
+                .endBlock();
         });
     }
 }
