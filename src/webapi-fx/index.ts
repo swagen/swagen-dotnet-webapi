@@ -1,7 +1,3 @@
-// const prompts = require('./prompts');
-// const buildProfile = require('./build-config');
-// const validateProfile = require('./validate-profile');
-// const generate = require('./generate');
 import { prompts } from './prompts';
 import { buildProfile } from './build-profile';
 import { validateProfile } from './validate-profile';
